@@ -1,0 +1,136 @@
+*{
+    margin:0px;
+    padding:0px;
+    /* border:1px dotted red; */
+}
+
+/* Registration Page  */
+.error_messages {
+    margin-left:20px;
+}
+#page_heading{
+    margin-left:300px;
+}
+#page_wrapper div{
+    display:inline-block;
+    vertical-align:top;
+}
+
+#register_container *{
+    display:block;
+}
+
+#register_container h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+#register_container input[type=submit] {
+    margin-left:100px;
+    margin-top:10px;
+}
+
+#login_container {
+    margin-left:200px;
+}
+#login_container *{
+    display:block;
+}
+
+#login_container h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+#login_container input[type=submit] {
+    margin-left:130px;
+    margin-top:10px;
+}
+
+.labels_container *{
+    line-height:25px;
+    display:block;
+}
+
+.input_container *{
+    margin-top:5px;
+    display:block;
+}
+
+#all_users_table {
+    border:1px solid black;
+}
+#all_users_table tr:nth-child(odd){ 
+    background: #adcaf1;
+}
+#all_users_table tr:nth-child(even){
+    background: #dce9fa;
+}
+
+/*All Books Page */
+#all_books_wrapper #add_book_container, #book_list_container {
+    margin-top:15px;
+    display:inline-block;
+    vertical-align:top;
+}
+#books_header {
+    border-bottom:2px solid black;
+}
+#books_header *{
+    display:inline-block;
+}
+#books_header #fav_books {
+    margin-left:5%; 
+}
+#books_header #logout {
+    margin-left:55%; 
+}
+#add_book_container{
+    margin-left:10px;
+}
+#add_book_container div {
+    display:inline-block;
+    vertical-align:top;
+}
+
+#add_book_container h2, input[type=submit]{
+    text-align:center;
+    display:block;
+}
+
+#add_book_container input[type=submit]{
+    margin-top:10px;
+    margin-left:150px;
+}
+#add_book_container #title_txt {
+    width:230px;
+}
+#book_list_container {
+    margin-left:5%;
+    width:60%
+}
+#book_list_container *{
+    display:block;
+}
+#all_books_link {
+    margin-top:10px;
+}
+#book_list_container .book_title{
+    margin-top:10px;
+}
+/*Book Detail Page */
+#book_wrapper #book_container, #favorite_users_container{
+    vertical-align:top;
+    display:inline-block;
+}
+#book_container {
+    margin-left:10px;
+    width:30%;
+}
+#book_container label{
+    display:block;
+}
+#favorite_users_container {
+    margin-left:5%;
+    width:60%;
+}

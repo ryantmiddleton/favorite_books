@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Detail</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="book_wrapper">
+        <div id="books_header">
+            <h1>Welcome {{request.session.user_name}}</h1>
+            <a href="/fav_books" id="fav_books">View Favorite Books</a>
+            <a href="/logout" id="logout">Log Off</a>
+        </div>
+        <div id="book_container">
+            {%if request.session.user_id == book.uploaded_by.id %}
+                <form action="/update_book/{{book.id}}" method="post"> 
+                {% csrf_token %} 
+                <input type="text" id="title_txt" value="{{book.title}}" name="title_txt">
+                <label><b>Added by: </b> {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</label>
+                <label><b>Added on: </b>{{book.created_at}}</label>
+                <label><b>Last updated:</b> {{book.updated_at}}</label>
+                <textarea id="desc_txt" name="desc_txt" cols="30" rows="10">{{book.description}}</textarea>
+                <input type="submit" value="Update" id="update_book_btn">
+                </form>
+                <form action ="/delete_book/{{book.id}}" method="post">
+                {% csrf_token %} 
+                <input type="submit" value="Delete Book">
+                </form>
+            {%else %}
+                <h2>{{book.title}}</h2>
+                <label><b>Added by: </b> {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</label>
+                <label><b>Added on: </b>{{book.created_at}}</label>
+                <label><b>Last updated:</b> {{book.updated_at}}</label>
+                <label><b>Description:</b></label>
+                <p>{{book.description}}</p>
+            {% endif %}
+            <a href="/books"> Back to All Books</a>
+        </div>
+        <div id="favorite_users_container">
+            <h2>Users Who Like This Book</h2>
+            <ul class="fav_user_list"></ul>
+            {% for user in book.favorite_users.all %}
+                <li>{{user.first_name}} {{user.last_name}}
+                {%if user.id == request.session.user_id %}
+                <a href="/delete_favorite/{{book.id}}">Un-favorite</a>
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+            {% if not cur_user in book.favorite_users.all %}
+            <a href="/add_favorite/{{book.id}}">Add to Favorites</a>
+            {% endif %}
+        </div>
+        
+    </div>
+    
+</body>
+</html>

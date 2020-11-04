@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="all_books_wrapper">
+        <div id="books_header">
+            <h1>Welcome {{request.session.user_name}}</h1>
+            <a href="/logout" id="logout">Log Off</a>
+        </div>
+        <div id="book_list_container">
+            <h2>All Favorite Books</h2>
+            {% for book in cur_user.favorite_books.all %}
+            <a href="books/{{book.id}}" class="book_title">{{book.title}}</a>
+            <p>Added by: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</p>
+            {% endfor %}
+            <a href="/books" id="all_books_link"> Back to All Books</a>
+        </div>   
+    </div>
+</body>
+</html>

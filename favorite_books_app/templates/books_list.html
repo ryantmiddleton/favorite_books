@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="all_books_wrapper">
+        {% if messages %}
+        <ul class="error_messages">
+            {% for msg in messages %}
+                <li {% if msg.tags %} class="{{msg.tags}}"
+                    {% endif %}>{{ msg }}</li>
+                </li>
+            {% endfor%}
+        {% endif %}
+        </ul>
+        <div id="books_header">
+            <h1>Welcome {{request.session.user_name}}</h1>
+            <a href="/fav_books" id="fav_books">View Favorite Books</a>
+            <a href="/logout" id="logout">Log Off</a>
+        </div>
+        <div id="add_book_container">
+            <h2>Add Book</h2>
+            <form action="/add_book" id="add_book_frm" method ="post">
+            {% csrf_token %}
+            <div class="labels_container">
+                <label>Title:</label>
+                <label>Description:</label>
+            </div>
+            <div class="input_container">
+                <input type="text" id="title_txt" name="title_txt">
+                <textarea id="desc_txt" name="desc_txt" cols="30" rows="10"></textarea>
+            </div> 
+            <input type="submit" value = "Add Book">
+            </form>
+        </div>
+        <div id="book_list_container">
+            <h2>All Books</h2>
+            {% for book in all_books %}
+            <a href="books/{{book.id}}" class="book_title">{{book.title}}</a>
+            <p>Added by: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</p>
+                {% if cur_user in book.favorite_users.all %}
+                <p>This is one of your favorites</p>
+                {% else %}
+                <a href="/add_favorite/{{book.id}}">Add to Favorites</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
