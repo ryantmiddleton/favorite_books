@@ -12,58 +12,67 @@
     crossorigin="anonymous">
     </script>
 
-    <script>
-        $(document).ready(function(){
-            $('#register_frm').submit(function(){
-                errormsgs={}
-                if($('#first_name_txt').val() == ""){
-                    errormsgs['first_name'] = "The first name field is blank";
-                }
-                if($('#last_name_txt').val() == ""){
-                    errormsgs['last_name'] = "The last name field is blank";
-                }
-                if($('#email_txt').val() == ""){
-                    errormsgs['email'] = "The email field is blank";
-                }
-                if($('#b_day_dt').val() == ""){
-                    errormsgs['b_day'] = "The birthday field is blank";
-                }
-                if($('#password_txt').val() == ""){
-                    errormsgs['password'] = "The password field is blank";
-                }
-                if($('#conf_password_txt').val() == ""){
-                    errormsgs['conf_password'] = "The confirm password field is blank";
-                }
-                count=0;
-                $.each(errormsgs, function(key, value) {
-                    alert(value);
-                    count++;
-                })
-                if(count==0){
-                    return true;
-                }
-                else return false;
+<script>
+    $(document).ready(function(){
+        $('#register_frm').submit(function(){
+            errormsgs={};
+            errormsg="";
+            if($('#first_name_txt').val() == ""){
+                errormsgs['first_name'] = "The first name field is blank";
+            }
+            if($('#last_name_txt').val() == ""){
+                errormsgs['last_name'] = "The last name field is blank";
+            }
+            if($('#email_txt').val() == ""){
+                errormsgs['email'] = "The email field is blank";
+            }
+            if($('#b_day_dt').val() == ""){
+                errormsgs['b_day'] = "The birthday field is blank";
+            }
+            if($('#password_txt').val() == ""){
+                errormsgs['password'] = "The password field is blank";
+            }
+            if($('#conf_password_txt').val() == ""){
+                errormsgs['conf_password'] = "The confirm password field is blank";
+            }
+            count=0;
+            $.each(errormsgs, function(key, value) {
+                errormsg += value + "\n"
+                count++;
             })
-            $('#login_frm').submit(function(){
-                errormsgs={}
-                if($('#login_email_txt').val() == ""){
-                    errormsgs['email'] = "The email field is blank";
-                }
-                if($('#login_password_txt').val() == ""){
-                    errormsgs['password'] = "The password field is blank";
-                }
-                count=0;
-                $.each(errormsgs, function(key, value) {
-                    alert(value);
-                    count++;
-                })
-                if(count==0){
-                    return true;
-                }
-                else return false;
-            })
+            if(count==0){
+                return true;
+            }
+            else {
+                alert(errormsg);
+                return false;
+            }
         })
-    </script>
+        $('#login_frm').submit(function(){
+            errormsgs={};
+            errormsg="";
+            if($('#login_email_txt').val() == ""){
+                errormsgs['email'] = "The email field is blank";
+            }
+            if($('#login_password_txt').val() == ""){
+                errormsgs['password'] = "The password field is blank";
+            }
+            count=0;
+            $.each(errormsgs, function(key, value) {
+                errormsg += value + "\n"
+                count++;
+            })
+            if(count==0){
+                return true;
+            }
+            else {
+                alert(errormsg);
+                return false;
+            }
+            
+        })
+    })
+</script>
 </head>
 <body>
     <div id="page_wrapper">
